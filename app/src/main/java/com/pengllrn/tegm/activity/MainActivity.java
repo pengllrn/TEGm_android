@@ -14,13 +14,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
     public void into(View v){
         Intent intent= new Intent(MainActivity.this,ShowDevActivity.class);
         startActivity(intent);
     }
 
     public void into2(View v){
-        Intent intent= new Intent(MainActivity.this,DevDetailActivity.class);
+        Intent intent= new Intent(MainActivity.this,SearchDeviceActivity.class);
         startActivity(intent);
     }
 

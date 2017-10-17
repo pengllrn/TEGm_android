@@ -17,10 +17,11 @@ public class FileCache {
 
     public FileCache(Context context) {
         //找一个用来缓存图片的路径
-        cacheDir = context.getCacheDir();
+        cacheDir = context.getFilesDir();
         if (!cacheDir.exists())
             cacheDir.mkdirs();
         //cacheDir = context.getFilesDir().getAbsoluteFile();
+        //getCacheDir();
     }
 
     public File getFile(String url) {

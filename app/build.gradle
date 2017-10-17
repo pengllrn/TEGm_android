@@ -34,5 +34,6 @@ dependencies {
     compile 'com.android.support:cardview-v7:26.+'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.google.code.gson:gson:2.7'
+    compile 'com.miguelcatalan:materialsearchview:1.4.0'
     testCompile 'junit:junit:4.12'
 }

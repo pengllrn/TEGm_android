@@ -153,6 +153,7 @@ public class DevDetailActivity extends AppCompatActivity {
         }
         if (useRates.size() > 0) {
             avgrate = avgrate * 100 / useRates.size();
+            avgrate =(float)(Math.round(avgrate*10))/10;
         }
         devDetail.setAvgrate(Float.toString(avgrate));
     }

@@ -236,7 +236,6 @@ public class ShowDevActivity extends BaseActivity {
                             mRoomCb.setText(roomName.get(position));
                             //实现筛选
                             chooseByRoom(roomName.get(position));
-
                         }
                     }, mRoomCb, mTypeCb, mBuildCb);
                 }
