@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
@@ -21,8 +22,8 @@ import com.pengllrn.tegm.bean.SchoolById;
 import com.pengllrn.tegm.bean.Type;
 import com.pengllrn.tegm.gson.ParseJson;
 import com.pengllrn.tegm.internet.OkHttp;
-import com.pengllrn.tegm.utils.BaseActivity;
 import com.pengllrn.tegm.utils.FileCache;
+import com.pengllrn.tegm.adapter.MyPopuAdapter;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,7 +31,8 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowDevActivity extends BaseActivity {
+public class ShowDevActivity extends AppCompatActivity {
+    private MyPopuAdapter myPopuAdapter;
     private ListView mListView;
 
     private List<String> buildName = new ArrayList<>();
@@ -91,6 +93,7 @@ public class ShowDevActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_dev);
+        myPopuAdapter=new MyPopuAdapter(this);
         initview();
         //从本地获取列表
         String data = read("list_data");
@@ -211,10 +214,10 @@ public class ShowDevActivity extends BaseActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (buildName != null) {
-                    filterTabToggle(isChecked, mBuildAll, buildName, new AdapterView.OnItemClickListener() {
+                    myPopuAdapter.filterTabToggle(isChecked, mBuildAll, buildName, new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                            hidePopListView();
+                            myPopuAdapter.hidePopListView();
                             mBuildCb.setText(buildName.get(position));
                             initRoomname(buildName.get(position));
                             //实现筛选
@@ -229,10 +232,10 @@ public class ShowDevActivity extends BaseActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (roomName != null) {
-                    filterTabToggle(isChecked, mRoomAll, roomName, new AdapterView.OnItemClickListener() {
+                    myPopuAdapter.filterTabToggle(isChecked, mRoomAll, roomName, new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                            hidePopListView();
+                            myPopuAdapter.hidePopListView();
                             mRoomCb.setText(roomName.get(position));
                             //实现筛选
                             chooseByRoom(roomName.get(position));
@@ -245,10 +248,10 @@ public class ShowDevActivity extends BaseActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (typeName.size()!=0) {
-                    filterTabToggle(isChecked, mTypeAll, typeName, new AdapterView.OnItemClickListener() {
+                    myPopuAdapter.filterTabToggle(isChecked, mTypeAll, typeName, new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                            hidePopListView();
+                            myPopuAdapter.hidePopListView();
                             mTypeCb.setText(typeName.get(position));
                             //实现筛选
                             chooseByType(typeName.get(position));

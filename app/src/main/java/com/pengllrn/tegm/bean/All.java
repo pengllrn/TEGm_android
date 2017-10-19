@@ -1,5 +1,6 @@
 package com.pengllrn.tegm.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  */
 
 public class All {
-    private List<Device> device;
+    private List<Device> device=new ArrayList<>();
     private List<SchoolById> schoolbyid;
     private List<Type> type;
 

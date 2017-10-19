@@ -31,6 +31,7 @@
                     android:textSize="20dp"/>
 
                 <TextView
+                    android:id="@+id/tv_action_setall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -127,14 +128,14 @@
                     android:textSize="18dp"/>
                 <!--筛选教学楼-->
                 <LinearLayout
-                    android:id="@+id/ll_build_name2"
+                    android:id="@+id/ll_room_name1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center">
 
                     <CheckBox
-                        android:id="@+id/cb_build_name2"
+                        android:id="@+id/cb_room_name1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@null"
@@ -186,14 +187,14 @@
                     android:textSize="18dp"/>
                 <!--筛选教学楼-->
                 <LinearLayout
-                    android:id="@+id/ll_build_name3"
+                    android:id="@+id/ll_type_name1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center">
 
                     <CheckBox
-                        android:id="@+id/cb_build_name3"
+                        android:id="@+id/cb_type_name1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@null"
@@ -312,7 +313,7 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/tv_action_cancel"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/search_bg"
@@ -328,6 +329,7 @@
                 android:layout_weight="1">
 
                 <TextView
+                    android:id="@+id/tv_action_sure"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#d13f3f"

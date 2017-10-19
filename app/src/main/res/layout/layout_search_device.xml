@@ -78,6 +78,7 @@
                     android:textColor="#ffffff"/>
 
                 <TextView
+                    android:id="@+id/tv_device_all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -103,6 +104,7 @@
                     android:textColor="#ffffff"/>
 
                 <TextView
+                    android:id="@+id/tv_device_run"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -113,12 +115,22 @@
             </LinearLayout>
         </LinearLayout>
 
-        <ListView
-            android:focusableInTouchMode="true"
-            android:id="@+id/list_item"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </ListView>
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <ListView
+                android:focusableInTouchMode="true"
+                android:id="@+id/list_item"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </ListView>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+
     </LinearLayout>
 
     <FrameLayout

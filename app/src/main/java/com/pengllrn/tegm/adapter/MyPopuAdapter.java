@@ -1,14 +1,13 @@
-package com.pengllrn.tegm.utils;
+package com.pengllrn.tegm.adapter;
 
 import android.app.Activity;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.PopupWindow;
+
+import com.pengllrn.tegm.utils.MyPopuWindow;
 
 import java.util.List;
 
@@ -20,7 +19,7 @@ import java.util.List;
  * @updateDate2017/9/23.
  */
 
-public class BaseActivity extends AppCompatActivity {
+public class MyPopuAdapter {
 
     /**
      * 筛选pop
@@ -31,10 +30,8 @@ public class BaseActivity extends AppCompatActivity {
      */
     protected Activity activity;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.activity = this;
+    public MyPopuAdapter(Activity activity) {
+        this.activity = activity;
     }
 
     /**

@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
@@ -39,14 +41,19 @@ public class SearchDeviceActivity extends AppCompatActivity {
 
     private MaterialSearchView searchView;
     private DrawerLayout mDrawerLayout;
-    private ListView mListView;
+
     private String path = "http://192.168.1.20:9999/getdeviceinfo/";
 
     private ParseJson mParseJson = new ParseJson();
     private DeviceAdapter mDeviceAdapter;
     private All all;
 
+    private ListView mListView;
     private LinearLayout LvChoose;
+    private TextView device_all;
+    private TextView device_run;
+    private SwipeRefreshLayout swipeRefresh;
+
 
     Handler mHandler = new Handler() {
         @Override
@@ -69,7 +76,6 @@ public class SearchDeviceActivity extends AppCompatActivity {
         }
     };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +97,7 @@ public class SearchDeviceActivity extends AppCompatActivity {
         String data = read("list_data");
         if (data != null && !data.equals("")) {
             all = mParseJson.JsonToAll(data);
-            setview(all.getDevice());
+            setMainview(all.getDevice());
             setListener(all.getDevice());
         }
         //从网络更新列表
@@ -103,6 +109,7 @@ public class SearchDeviceActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         setLvListener();
+        setRefreshListener();
     }
 
     @Override
@@ -159,6 +166,12 @@ public class SearchDeviceActivity extends AppCompatActivity {
             case R.id.menu_choose:
                 mDrawerLayout.openDrawer(GravityCompat.END);
                 break;
+            case R.id.menu_refresh:
+                if(swipeRefresh.isRefreshing()){
+                    swipeRefresh.setRefreshing(false);
+                }else
+                swipeRefresh.setRefreshing(true);
+                break;
             default:
         }
         return true;
@@ -167,6 +180,10 @@ public class SearchDeviceActivity extends AppCompatActivity {
     private void initview() {
         mListView = (ListView) findViewById(R.id.list_item);
         LvChoose = (LinearLayout) findViewById(R.id.lv_choose);
+        device_all = (TextView) findViewById(R.id.tv_device_all);
+        device_run = (TextView) findViewById(R.id.tv_device_run);
+        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+        swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -232,5 +249,51 @@ public class SearchDeviceActivity extends AppCompatActivity {
                 mDrawerLayout.openDrawer(GravityCompat.END);
             }
         });
+    }
+    private void setRefreshListener() {
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try{
+                            Thread.sleep(2000);
+                        }catch (InterruptedException e){
+                            e.printStackTrace();
+                        }
+                        //从网络更新列表
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                swipeRefresh.setRefreshing(false);
+                            }
+                        });
+                    }
+                }).start();
+            }
+        });
+    }
+    public All getAll() {
+        return all;
+    }
+
+    public void setMainview(List<Device> listDevice) {
+        int count=0;
+        for(int i=0;i<listDevice.size();i++){
+            if(listDevice.get(i).getUseFlag().equals("正在使用")){
+                count++;
+            }
+        }
+        mDeviceAdapter = new DeviceAdapter(SearchDeviceActivity.this, listDevice, R.layout.item_layout);
+        mListView.setAdapter(mDeviceAdapter);
+        device_all.setText(String.valueOf(listDevice.size()));
+        device_run.setText(String.valueOf(count));
+    }
+
+    public void closeDrawer() {
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.END)) {
+            mDrawerLayout.closeDrawer(GravityCompat.END);
+        }
     }
 }
