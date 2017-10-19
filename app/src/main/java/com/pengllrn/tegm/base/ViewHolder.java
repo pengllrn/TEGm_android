@@ -1,4 +1,4 @@
-package com.pengllrn.tegm.utils;
+package com.pengllrn.tegm.base;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.pengllrn.tegm.utils.ImageLoader;
 
 public class ViewHolder {
     private SparseArray<View> mViews;

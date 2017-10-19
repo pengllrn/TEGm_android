@@ -1,4 +1,4 @@
-package com.pengllrn.tegm.utils;
+package com.pengllrn.tegm.base;
 
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;

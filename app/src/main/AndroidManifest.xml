@@ -20,10 +20,16 @@
         </activity>
         <activity android:name=".activity.ShowDevActivity">
         </activity>
-        <activity android:name=".activity.DevDetailActivity">
+        <activity
+            android:name=".activity.DevDetailActivity"
+            android:label="设备信息">
         </activity>
-        <activity android:name=".activity.SearchDeviceActivity"
+        <activity
+            android:name=".activity.SearchDeviceActivity"
             android:label="设备列表">
+        </activity>
+        <activity android:name=".activity.DamageApllyActivity"
+            android:label="设备报废申请">
         </activity>
     </application>
 

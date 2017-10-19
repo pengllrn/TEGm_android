@@ -24,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent= new Intent(MainActivity.this,SearchDeviceActivity.class);
         startActivity(intent);
     }
-
+    public void into3(View v){
+        Intent intent= new Intent(MainActivity.this,DamageApllyActivity.class);
+        startActivity(intent);
+    }
 
 }

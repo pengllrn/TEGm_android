@@ -1,289 +1,309 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-    <LinearLayout
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white_235"
         android:orientation="vertical">
 
-        <LinearLayout
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white_255"
-            android:orientation="vertical">
-
-            <TextView
+            android:layout_height="?attr/actionBarSize"
+            android:background="#d96565"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+    </FrameLayout>
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="基本信息"
-                android:textColor="@color/black_58"
-                android:textSize="15dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dip"
-                android:layout_marginLeft="10dp"
-                android:background="@color/divider_line"
-                android:scaleType="fitXY"/>
-
-            <TextView
-                android:id="@+id/dev_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:paddingLeft="5dp"
-                android:text="设备名称"/>
-
-            <TextView
-                android:id="@+id/dev_kind"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:paddingLeft="5dp"
-                android:text="设备类型"/>
-
-            <TextView
-                android:id="@+id/dev_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:paddingLeft="5dp"
-                android:text="设备编号"/>
-
-            <TextView
-                android:id="@+id/dev_sensor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:paddingLeft="5dp"
-                android:text="传感器编号编号"/>
-
-        </LinearLayout>
+                android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@color/white_255"
+            android:background="@color/white_235"
             android:orientation="vertical">
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="状态信息"
-                android:textColor="@color/black_58"
-                android:textSize="15dp"/>
+                android:background="@color/white_255"
+                android:orientation="vertical">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dip"
-                android:layout_marginLeft="10dp"
-                android:background="@color/divider_line"
-                android:scaleType="fitXY"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="基本信息"
+                    android:textColor="@color/black_58"
+                    android:textSize="15dp"/>
 
-            <TextView
-                android:id="@+id/dev_useflag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:paddingLeft="5dp"
-                android:text="运行状态"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/divider_line"
+                    android:scaleType="fitXY"/>
 
-            <TextView
-                android:id="@+id/dev_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:paddingLeft="5dp"
-                android:text="设备状态"/>
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/dev_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="5dp"
+                    android:text="设备名称"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@color/white_255"
-            android:orientation="vertical">
+                <TextView
+                    android:id="@+id/dev_kind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="5dp"
+                    android:text="设备类型"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="使用频率"
-                android:textColor="@color/black_58"
-                android:textSize="15dp"/>
+                <TextView
+                    android:id="@+id/dev_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="5dp"
+                    android:text="设备编号"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dip"
-                android:layout_marginLeft="10dp"
-                android:background="@color/divider_line"
-                android:scaleType="fitXY"/>
+                <TextView
+                    android:id="@+id/dev_sensor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="5dp"
+                    android:text="传感器编号编号"/>
 
-            <TextView
-                android:id="@+id/dev_avgrate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:paddingLeft="5dp"
-                android:text="近10天平均使用率: 60%"/>
-
-            <com.pengllrn.tegm.views.BrokenLineChartView
-                android:id="@+id/line_chart"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@color/white_255"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="位置信息"
-                android:textColor="@color/black_58"
-                android:textSize="15dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dip"
-                android:layout_marginLeft="10dp"
-                android:background="@color/divider_line"
-                android:scaleType="fitXY"/>
-
-            <TextView
-                android:id="@+id/dev_roominfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:paddingLeft="5dp"
-                android:text="房间信息"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginTop="20dp"
+                android:background="@color/white_255"
+                android:orientation="vertical">
 
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="状态信息"
+                    android:textColor="@color/black_58"
+                    android:textSize="15dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/divider_line"
+                    android:scaleType="fitXY"/>
+
+                <TextView
+                    android:id="@+id/dev_useflag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:paddingLeft="5dp"
-                    android:text="gis位置"/>
+                    android:text="运行状态"/>
 
                 <TextView
-                    android:id="@+id/dev_gis"
+                    android:id="@+id/dev_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:paddingLeft="5dp"
-                    android:text="(117,124)"/>
-
-                <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginTop="5dp"
-                    android:src="@mipmap/ic_room"/>
+                    android:text="设备状态"/>
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@color/white_255"
-            android:orientation="vertical">
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="其他信息"
-                android:textColor="@color/black_58"
-                android:textSize="15dp"/>
+                android:layout_marginTop="20dp"
+                android:background="@color/white_255"
+                android:orientation="vertical">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dip"
-                android:layout_marginLeft="10dp"
-                android:background="@color/divider_line"
-                android:scaleType="fitXY"/>
-
-            <TextView
-                android:id="@+id/dev_schoolname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:paddingLeft="5dp"
-                android:text="所属学校"/>
-
-            <TextView
-                android:id="@+id/dev_usedepart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:paddingLeft="5dp"
-                android:text="使用部门"/>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/per_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="使用频率"
+                    android:textColor="@color/black_58"
+                    android:textSize="15dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/divider_line"
+                    android:scaleType="fitXY"/>
+
+                <TextView
+                    android:id="@+id/dev_avgrate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:paddingLeft="5dp"
-                    android:text="联系人:"/>
+                    android:text="近10天平均使用率: 60%"/>
+
+                <com.pengllrn.tegm.views.BrokenLineChartView
+                    android:id="@+id/line_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/white_255"
+                android:orientation="vertical">
+
                 <TextView
-                    android:id="@+id/dev_checkname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="位置信息"
+                    android:textColor="@color/black_58"
+                    android:textSize="15dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/divider_line"
+                    android:scaleType="fitXY"/>
+
+                <TextView
+                    android:id="@+id/dev_roominfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:layout_toRightOf="@+id/per_name"
-                    android:text="张三"/>
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/ic_call"
-                    android:layout_alignParentRight="true"/>
-            </RelativeLayout>
-            <TextView
-                android:id="@+id/dev_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:paddingLeft="5dp"
-                android:text="设备介绍"/>
-            <TextView
-                android:id="@+id/dev_configureinfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:paddingLeft="5dp"
-                android:text="配置信息"/>
+                    android:paddingLeft="5dp"
+                    android:text="房间信息"/>
 
-            <TextView
-                android:id="@+id/regist_first"
-                android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="5dp"
+                        android:text="gis位置"/>
+
+                    <TextView
+                        android:id="@+id/dev_gis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="5dp"
+                        android:text="(117,124)"/>
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginTop="5dp"
+                        android:src="@mipmap/ic_room"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:paddingLeft="5dp"
-                android:text="注册日期"/>
+                android:layout_marginTop="20dp"
+                android:background="@color/white_255"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="其他信息"
+                    android:textColor="@color/black_58"
+                    android:textSize="15dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/divider_line"
+                    android:scaleType="fitXY"/>
+
+                <TextView
+                    android:id="@+id/dev_schoolname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="5dp"
+                    android:text="所属学校"/>
+
+                <TextView
+                    android:id="@+id/dev_usedepart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="5dp"
+                    android:text="使用部门"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/per_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="5dp"
+                        android:text="联系人:"/>
+                    <TextView
+                        android:id="@+id/dev_checkname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_toRightOf="@+id/per_name"
+                        android:text="张三"/>
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/ic_call"
+                        android:layout_alignParentRight="true"/>
+                </RelativeLayout>
+                <TextView
+                    android:id="@+id/dev_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="5dp"
+                    android:text="设备介绍"/>
+                <TextView
+                    android:id="@+id/dev_configureinfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="5dp"
+                    android:text="配置信息"/>
+
+                <TextView
+                    android:id="@+id/regist_first"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="5dp"
+                    android:text="注册日期"/>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

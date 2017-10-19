@@ -75,6 +75,8 @@ public class SearchDeviceActivity extends AppCompatActivity {
             super.handleMessage(msg);
         }
     };
+    private TextView which_build;
+    private TextView which_room;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,6 +186,8 @@ public class SearchDeviceActivity extends AppCompatActivity {
         device_run = (TextView) findViewById(R.id.tv_device_run);
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
         swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
+        which_build = (TextView) findViewById(R.id.tv_which_build);
+        which_room = (TextView) findViewById(R.id.tv_which_room);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -294,6 +298,15 @@ public class SearchDeviceActivity extends AppCompatActivity {
     public void closeDrawer() {
         if (mDrawerLayout.isDrawerOpen(GravityCompat.END)) {
             mDrawerLayout.closeDrawer(GravityCompat.END);
+        }
+    }
+
+    public void setWhich(String build,String room){
+        if(build!=null) {
+            which_build.setText(build);
+        }
+        if(room!=null) {
+            which_room.setText(room);
         }
     }
 }

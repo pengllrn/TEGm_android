@@ -43,6 +43,7 @@
                 android:orientation="vertical"
                 android:background="#e96a6a">
                 <TextView
+                    android:id="@+id/tv_which_build"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -53,12 +54,13 @@
                     android:textColor="#ffffff"/>
 
                 <TextView
+                    android:id="@+id/tv_which_room"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="5dp"
-                    android:text="B401"
-                    android:textSize="18dp"
+                    android:text="全部"
+                    android:textSize="16dp"
                     android:textColor="#ffffff"/>
             </LinearLayout>
 

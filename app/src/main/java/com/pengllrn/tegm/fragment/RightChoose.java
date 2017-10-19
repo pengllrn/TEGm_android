@@ -188,6 +188,13 @@ public class RightChoose extends Fragment {
             @Override
             public void onClick(View view) {
                 mActivity.setMainview(all.getDevice());
+                mBuildCb.setText("教学楼");
+                c_building=null;
+                mRoomCb.setText("房间号");
+                c_room=null;
+                mTypeCb.setText("设备类型");
+                c_type=null;
+                mActivity.setWhich("全部","全部");
                 mActivity.closeDrawer();
             }
         });
@@ -196,6 +203,7 @@ public class RightChoose extends Fragment {
             @Override
             public void onClick(View view) {
                 mActivity.setMainview(getListDevice());
+                mActivity.setWhich(c_building,c_room);
                 mActivity.closeDrawer();
             }
         });
@@ -257,7 +265,7 @@ public class RightChoose extends Fragment {
             List<Device> typedevice = new ArrayList<>();
             if(listDevice.size()>0){
                 for (int i = 0; i < listDevice.size(); i++) {
-                    if (listDevice.get(i).getDeviceType().equals(c_room)) {
+                    if (listDevice.get(i).getDeviceType().equals(c_type)) {
                         typedevice.add(listDevice.get(i));
                     }
                 }
@@ -272,4 +280,6 @@ public class RightChoose extends Fragment {
         }
         return listDevice;
     }
+
+
 }

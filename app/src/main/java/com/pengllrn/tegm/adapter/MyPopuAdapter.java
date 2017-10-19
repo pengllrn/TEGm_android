@@ -7,7 +7,7 @@ import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.PopupWindow;
 
-import com.pengllrn.tegm.utils.MyPopuWindow;
+import com.pengllrn.tegm.base.MyPopuWindow;
 
 import java.util.List;
 

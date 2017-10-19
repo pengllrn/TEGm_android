@@ -5,8 +5,8 @@ import android.content.Context;
 import com.pengllrn.tegm.R;
 import com.pengllrn.tegm.bean.Device;
 import com.pengllrn.tegm.utils.ImageLoader;
-import com.pengllrn.tegm.utils.ListViewAdapter;
-import com.pengllrn.tegm.utils.ViewHolder;
+import com.pengllrn.tegm.base.ListViewAdapter;
+import com.pengllrn.tegm.base.ViewHolder;
 
 import java.util.List;
 
