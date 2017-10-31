@@ -3,13 +3,22 @@ package com.pengllrn.tegm.internet;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+
+import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
 
 /**
@@ -28,12 +37,12 @@ public class OkHttp {
     private Handler handler;
     private Context mContext;
 
-    public OkHttp(Context context, Handler handler){
-        this.mContext=context;
-        this.handler=handler;
+    public OkHttp(Context context, Handler handler) {
+        this.mContext = context;
+        this.handler = handler;
     }
 
-    public void postDataFromInternet(final String path,final RequestBody requestBody){
+    public void postDataFromInternet(final String path, final RequestBody requestBody) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -45,14 +54,13 @@ public class OkHttp {
                             .post(requestBody)
                             .build();
                     Response response = client.newCall(request).execute();
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         String responseData = response.body().string();
                         Message msg = new Message();
                         msg.what = POSTOK;
                         msg.obj = responseData;
                         handler.sendMessage(msg);
-                    }
-                    else {
+                    } else {
                         //TODO 错误报告
                         Message msg = new Message();
                         msg.what = WRANG;
@@ -68,7 +76,7 @@ public class OkHttp {
         }).start();
     }
 
-    public void getDataFromInternet(final String path){
+    public void getDataFromInternet(final String path) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -79,14 +87,13 @@ public class OkHttp {
                             .url(path)
                             .build();
                     Response response = client.newCall(request).execute();
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         String responseData = response.body().string();
                         Message msg = new Message();
                         msg.what = GETOK;
                         msg.obj = responseData;
                         handler.sendMessage(msg);
-                    }
-                    else {
+                    } else {
                         //TODO 错误报告
                         Message msg = new Message();
                         msg.what = WRANG;
@@ -98,6 +105,63 @@ public class OkHttp {
                     handler.sendMessage(msg);
                     e.printStackTrace();
                 }
+            }
+        }).start();
+    }
+
+    public void uploadMultiFile(final String requesturl,final String fileName,final String deviceid,
+                                final String apperid,final String appername,final String damagedepict,
+                                final  String datetime,final File ...files) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //File file = new File(fileDir);
+                //application/octet-stream
+                //RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
+//                RequestBody requestBody = new MultipartBody.Builder()
+//                        .setType(MultipartBody.FORM)
+//                        .addFormDataPart("image", fileName, fileBody)
+//                        .build();
+                MultipartBody.Builder builder = new MultipartBody.Builder();
+                for(int i=0;i<files.length;i++){
+                    RequestBody fileBody1 = RequestBody.create(MediaType.parse("application/octet-stream"), files[i]);
+                    builder.addFormDataPart("image"+i,fileName+"_"+i+".jpg",fileBody1);
+                }
+                RequestBody requestBody=builder
+                        .setType(MultipartBody.FORM)
+                        .addFormDataPart("deviceid",deviceid)
+                        .addFormDataPart("applierid",apperid)
+                        .addFormDataPart("appliername",appername)
+                        .addFormDataPart("damagedepict",damagedepict)
+                        .addFormDataPart("datetime",datetime)
+                        .build();
+                Request request = new Request.Builder()
+                        .url(requesturl)
+                        .post(requestBody)
+                        .build();
+
+                final okhttp3.OkHttpClient.Builder httpBuilder = new OkHttpClient.Builder();
+                OkHttpClient okHttpClient  = httpBuilder
+                        //设置超时
+                        .connectTimeout(10, TimeUnit.SECONDS)
+                        .writeTimeout(15, TimeUnit.SECONDS)
+                        .build();
+                okHttpClient.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        Log.e(TAG, "uploadMultiFile() e=" + e);
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String responseData = response.body().string();
+                        Log.i(TAG, "uploadMultiFile() response=" + responseData);
+                        Message msg = new Message();
+                        msg.what = 0x2018;
+                        msg.obj = responseData;
+                        handler.sendMessage(msg);
+                    }
+                });
             }
         }).start();
     }

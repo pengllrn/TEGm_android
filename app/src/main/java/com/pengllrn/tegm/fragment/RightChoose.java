@@ -76,11 +76,12 @@ public class RightChoose extends Fragment {
         myPopuAdapter = new MyPopuAdapter(getActivity());
         all = mActivity.getAll();
         initView(view);
-        initBuildname(all.getSchoolbyid());
-        initTypename(all.getType());
-        setCbListener();
-        setActionListener();
-
+        if(all!=null){
+            initBuildname(all.getSchoolbyid());
+            initTypename(all.getType());
+            setCbListener();
+            setActionListener();
+        }
     }
 
 

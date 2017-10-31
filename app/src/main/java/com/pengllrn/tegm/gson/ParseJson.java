@@ -35,4 +35,6 @@ public class ParseJson {
         DevDetail detail = gson.fromJson(json,DevDetail.class);
         return detail;
     }
+
+
 }
