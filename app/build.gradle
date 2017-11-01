@@ -31,6 +31,7 @@ dependencies {
     //okhttp依赖库
     //recycler控键依赖库
     //卡片式布局库
+
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
@@ -39,12 +40,9 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.google.code.gson:gson:2.7'
     compile 'com.miguelcatalan:materialsearchview:1.4.0'
-
     compile 'me.iwf.photopicker:PhotoPicker:0.9.10@aar'
     compile 'com.android.support:design:26.+'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.github.bumptech.glide:glide:4.1.1'
-
     testCompile 'junit:junit:4.12'
-
 }
