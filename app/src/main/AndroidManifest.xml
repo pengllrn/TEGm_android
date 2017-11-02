@@ -55,7 +55,9 @@
             android:name="io.fabric.ApiKey"
             android:value="423ff17515038a50c41085cc2dbd0087d2e51cbb"/>
 
-        <activity android:name=".activity.DamageApplyList">
+        <activity android:name=".activity.DamageApplyListActivity">
+        </activity>
+        <activity android:name=".activity.LookDamageDevice">
         </activity>
     </application>
 

@@ -255,6 +255,10 @@ public class DamageApllyActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 break;
+            case R.id.menu_apply_list:
+                Intent intent = new Intent(this,DamageApplyListActivity.class);
+                startActivity(intent);
+                break;
             default:
         }
         return true;
