@@ -1,6 +1,8 @@
 package com.pengllrn.tegm.internet;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -32,8 +34,10 @@ import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 public class OkHttp {
     public final int POSTOK = 0x2017;
     public final int GETOK = 0x2020;
+    public final int GETIMGOK = 0x2030;
     public final int WRANG = 0x22;
     public final int EXCEPTION = 0x30;
+    private final int SUC = 0x40;
     private Handler handler;
     private Context mContext;
 
@@ -76,6 +80,39 @@ public class OkHttp {
         }).start();
     }
 
+    public void postData2Internet(final String path, final RequestBody requestBody) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    //用post提交键值对格式的数据
+                    Request request = new Request.Builder()
+                            .url(path)
+                            .post(requestBody)
+                            .build();
+                    Response response = client.newCall(request).execute();
+                    if (response.isSuccessful()) {
+                        Message msg = new Message();
+                        msg.obj = response.body().string();
+                        msg.what = SUC;
+                        handler.sendMessage(msg);
+                    } else {
+                        //TODO 错误报告
+                        Message msg = new Message();
+                        msg.what = WRANG;
+                        handler.sendMessage(msg);
+                    }
+                } catch (IOException e) {
+                    Message msg = new Message();
+                    msg.what = EXCEPTION;
+                    handler.sendMessage(msg);
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
     public void getDataFromInternet(final String path) {
         new Thread(new Runnable() {
             @Override
@@ -100,6 +137,39 @@ public class OkHttp {
                         handler.sendMessage(msg);
                     }
                 } catch (IOException e) {
+                    Message msg = new Message();
+                    msg.what = EXCEPTION;
+                    handler.sendMessage(msg);
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    public void getImageFromInternet(final String path) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    //用post提交键值对格式的数据
+                    Request request = new Request.Builder()
+                            .url(path)
+                            .build();
+                    Response response = client.newCall(request).execute();
+                    if (response.isSuccessful()) {
+                        Bitmap bitmap = BitmapFactory.decodeStream(response.body().byteStream());
+                        Message msg = new Message();
+                        msg.what = GETIMGOK;
+                        msg.obj = bitmap;
+                        handler.sendMessage(msg);
+                    } else {
+                        //TODO 错误报告
+                        Message msg = new Message();
+                        msg.what = WRANG;
+                        handler.sendMessage(msg);
+                    }
+                } catch (Exception e) {
                     Message msg = new Message();
                     msg.what = EXCEPTION;
                     handler.sendMessage(msg);

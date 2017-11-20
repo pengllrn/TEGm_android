@@ -7,15 +7,13 @@ import android.os.Message;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.pengllrn.tegm.R;
-import com.pengllrn.tegm.adapter.DamageApplyAdapter;
-import com.pengllrn.tegm.bean.DamageApplyList;
+import com.pengllrn.tegm.adapter.BuildingListAdapter;
+import com.pengllrn.tegm.bean.BuildingList;
 import com.pengllrn.tegm.gson.ParseJson;
 import com.pengllrn.tegm.internet.OkHttp;
 
@@ -24,11 +22,12 @@ import java.util.List;
 import okhttp3.FormBody;
 import okhttp3.RequestBody;
 
-public class DamageApplyListActivity extends AppCompatActivity {
+public class GetBuildingList extends AppCompatActivity {
+
+    private ListView list_building;
+
     String applyUrl = "http://192.168.1.20:9999/damageapplylist/";
     ParseJson mParseJson = new ParseJson();
-    private ListView list_damage_apply;
-    private TextView apply_count;
 
     Handler mHandler = new Handler() {
         @Override
@@ -37,16 +36,15 @@ public class DamageApplyListActivity extends AppCompatActivity {
             switch (msg.what) {
                 case 0x2017:
                     String responseData = (msg.obj).toString();
-                    final List<DamageApplyList> listDamage = mParseJson.Json2DamageList(responseData).getDamagelist();
-                    if(listDamage!=null) {
-                        list_damage_apply.setAdapter(new DamageApplyAdapter(DamageApplyListActivity.this,
-                                listDamage, R.layout.damage_apply_list_item));
-                        apply_count.setText("共 "+listDamage.size()+" 条申请报废记录");
-                        list_damage_apply.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    final List<BuildingList> listBuilding = mParseJson.Json2Gis(responseData).getBuildingLists();
+                    if(listBuilding!=null) {
+                        list_building.setAdapter(new BuildingListAdapter(getApplicationContext(),
+                                listBuilding, R.layout.base_list_item));
+                        list_building.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                                Intent intent = new Intent(DamageApplyListActivity.this, LookDamageDevice.class);
-                                intent.putExtra("deviceid", listDamage.get(position).getDeviceid());
+                                Intent intent = new Intent(getApplicationContext(), GetRoomList.class);
+                                intent.putExtra("buildingname", listBuilding.get(position).getBuildingname());
                                 startActivity(intent);
                             }
                         });
@@ -58,11 +56,10 @@ public class DamageApplyListActivity extends AppCompatActivity {
         }
     };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_damage_apply_list);
+        setContentView(R.layout.activity_get_building_list);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar3);
         setSupportActionBar(toolbar);
@@ -71,30 +68,10 @@ public class DamageApplyListActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.mipmap.back);
         }
-        initView();
-    }
+        list_building = (ListView) findViewById(R.id.list_building);
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        OkHttp okHttp = new OkHttp(DamageApplyListActivity.this, mHandler);
-        RequestBody requestBody = new FormBody.Builder().add("type", "1").build();
+        OkHttp okHttp = new OkHttp(getApplicationContext(), mHandler);
+        RequestBody requestBody = new FormBody.Builder().add("type", "2").build();
         okHttp.postDataFromInternet(applyUrl, requestBody);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-            default:
-        }
-        return true;
-    }
-
-    private void initView() {
-        list_damage_apply = (ListView) findViewById(R.id.list_damage_apply);
-        apply_count = (TextView) findViewById(R.id.tv_apply_count);
     }
 }

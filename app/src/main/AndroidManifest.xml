@@ -3,6 +3,7 @@
           package="com.pengllrn.tegm">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> -->
     <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> -->
     <!-- <uses-permission android:name="android.permission.CAMERA" /> -->
@@ -55,9 +56,21 @@
             android:name="io.fabric.ApiKey"
             android:value="423ff17515038a50c41085cc2dbd0087d2e51cbb"/>
 
-        <activity android:name=".activity.DamageApplyListActivity">
+        <activity
+            android:name=".activity.DamageApplyListActivity"
+            android:label="报废设备列表">
         </activity>
-        <activity android:name=".activity.LookDamageDevice">
+        <activity
+            android:name=".activity.LookDamageDevice"
+            android:label="设备详情">
+        </activity>
+        <activity
+            android:name=".activity.GetSchoolList"
+            android:label="学校">
+        </activity>
+        <activity android:name=".activity.GetBuildingList">
+        </activity>
+        <activity android:name=".activity.GetRoomList">
         </activity>
     </application>
 

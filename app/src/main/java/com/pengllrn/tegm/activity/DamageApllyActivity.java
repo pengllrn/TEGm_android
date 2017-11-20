@@ -120,7 +120,6 @@ public class DamageApllyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_damage_apply);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -133,7 +132,7 @@ public class DamageApllyActivity extends AppCompatActivity {
         setRecyclerview();
         SharedPreferences pref= getSharedPreferences("user",MODE_PRIVATE);
         applierid = pref.getString("userid","2032");
-        appliername = pref.getString("username","李");
+        appliername = pref.getString("username","李ge");
         tv_person.setText(appliername);
     }
 
@@ -161,7 +160,7 @@ public class DamageApllyActivity extends AppCompatActivity {
                     public void onItemClick(View view, int position) {
                         if (photoAdapter.getItemViewType(position) == PhotoAdapter.TYPE_ADD) {
                             PhotoPicker.builder()
-                                    .setPhotoCount(PhotoAdapter.MAX)
+                                    .setPhotoCount(6)
                                     .setShowCamera(true)
                                     .setPreviewEnabled(false)
                                     .setSelected(selectedPhotos)

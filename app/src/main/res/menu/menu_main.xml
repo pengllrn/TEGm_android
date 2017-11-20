@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/action_search"
-        android:icon="@drawable/ic_action_action_search"
-        android:orderInCategory="100"
-        android:title="@string/abc_search_hint"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/menu_choose"
-        android:title="筛选"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/menu_refresh"
-        android:title="刷新"
-        app:showAsAction="never"/>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_look_device"
+            android:icon="@mipmap/ic_visibility_grey"
+            android:title="设备查看"/>
+        <item
+            android:id="@+id/nav_search_device"
+            android:icon="@mipmap/ic_search_grey"
+            android:title="设备查询"/>
+        <item
+            android:id="@+id/nav_damage_center"
+            android:icon="@mipmap/ic_damage_apply"
+            android:title="报废中心"/>
+        <item
+            android:id="@+id/nav_abnormal_warn"
+            android:icon="@mipmap/ic_warning_grey"
+            android:title="设备预警"/>
+        <item
+            android:id="@+id/nav_property_statics"
+            android:icon="@mipmap/ic_property_statics"
+            android:title="资产统计"/>
+        <item
+            android:id="@+id/nav_private_center"
+            android:icon="@mipmap/ic_private_center"
+            android:title="个人中心"/>
+
+    </group>
 </menu>

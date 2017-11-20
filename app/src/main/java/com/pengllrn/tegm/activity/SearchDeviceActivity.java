@@ -65,6 +65,7 @@ public class SearchDeviceActivity extends AppCompatActivity {
                     all = mParseJson.JsonToAll(responseData);
                     setview(all.getDevice());
                     setListener(all.getDevice());
+                    setMainview(all.getDevice());
                     Toast.makeText(SearchDeviceActivity.this, "设备列表已更新成功！", Toast.LENGTH_SHORT).show();
                     save(responseData);
                     break;
@@ -116,7 +117,7 @@ public class SearchDeviceActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main1, menu);
         MenuItem item = menu.findItem(R.id.action_search);
         searchView.setMenuItem(item);
         searchView.setHint("设备编号或传感器编号");
